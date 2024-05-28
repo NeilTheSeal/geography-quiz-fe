@@ -39,8 +39,5 @@
 
 /node_modules
 /coverage
-Gemfile.lock
-package-lock.json
-bun.lockb
 .rubocop.yml
 .standard.yml
