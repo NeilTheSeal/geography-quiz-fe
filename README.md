@@ -1,3 +1,126 @@
-# README
+# Geography Quiz Front-End
+> A fun online quiz to test your knowledge of world geography
 
-Test build
+![Ruby][ruby-image]
+![Rails][rails-image]
+
+This is the front end to the **Geography Quiz** web application made by students at [Turing School of Programming and Design](https://turing.edu) over the course of two weeks. It is [deployed on Heroku](https://secret-citadel-94988-86e2ffef1cda.herokuapp.com) and uses PostgreSQL to store user data, along with OAuth2 to create accounts. The quiz questions are randomly generated using data from the [REST Countries API](https://restcountries.com). Each quiz is 20 questions and there is a high scores list displaying the most knowledgable folks. The back end of this project is open source and [available on GitHub.](https://github.com/NeilTheSeal/geography-quiz-be)
+
+<img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png" alt="drawing" width="300" style="transform:translateX(calc(50vw - 100%));"/>
+
+## Example quiz questions
+
+Which of these countries' capital is New Delhi?
+- Pakistan
+- India
+- Germany
+- Botswana
+<br/>
+<br/>
+
+What country has borders with Bandledesh, Bhutan, Myanmar, China, Nepal, and Pakistan?
+- India
+- Bhutan
+- Afghanistan
+- Mongolia
+<br/>
+<br/>
+
+The people of Poland commonly call their country:
+- Республика Польша
+- Polonia
+- Polska
+- Lengyelország
+<br/>
+<br/>
+
+This is the flag of what country? ![image](https://flagsapi.com/BE/flat/64.png)
+- Spain
+- Belgium
+- Bangladesh
+- Switzerland
+
+## Q&A
+
+- Example question 1
+  - Example answer 1
+
+- Example question 2
+  - Example answer 2
+
+## Development setup
+
+The front-end of this project uses Ruby on Rails 7.1.3 and was built using macOS Sonoma 14.4.1. It uses the [hotwire-livereload gem](https://github.com/kirillplatonov/hotwire-livereload) to dynamically refresh the browser whenever changes are made to files within `/app/`.
+
+First, clone the repository to your computer
+
+```sh
+git clone git@github.com:NeilTheSeal/geography-quiz-fe.git
+```
+
+This guide assumes you have installed [homebrew](https://brew.sh), [Rails 7.1.3](https://guides.rubyonrails.org/v7.1/getting_started.html), and [node.js 21.6.2](https://github.com/nvm-sh/nvm). In the repository root directory, run
+
+```sh
+npm install --save
+```
+If you do not have [redis](https://github.com/redis/redis) installed, run
+
+```sh
+brew install redis
+```
+
+Next, install all of the Gems
+
+```sh
+bundle install
+```
+
+Install the **bun** JavaScript bundler globally -
+
+```sh
+npm install -g bun
+```
+
+Install the livereload feature -
+
+```sh
+rails livereload:install
+```
+
+Start the **redis** background task -
+
+```sh
+brew services restart redis
+```
+
+Finally, start the development server
+
+```sh
+./bin/dev
+```
+
+and open a web browser with URL `localhost:3000`.
+
+## Release History
+
+* 0.0.1
+    * Work in progress
+
+## Meta
+
+Neil Hendren | [NeiltheSeal](https://github.com/NeiltheSeal) | neil.hendren@gmail.com | [LinkedIn](https://www.linkedin.com/in/neilhendren/)
+
+Luis Aparicio | [LuisAparicio14](https://github.com/luisaparicio14) | lfelipeaparicio2004@gmail.com | [LinkedIn](https://www.linkedin.com/in/luis-aparicio14/)
+
+Rodrigo Chavez - [RodrigoACG](https://github.com/RodrigoACG) | Rodrigo103004@gmail.com | [LinkedIn](http://www.linkedin.com/in/rodrigo-chavez1)
+
+Distributed under the MIT license. See ``LICENSE.txt`` for more information.
+
+## Contributing
+
+Email any author to inquire about contributing.
+
+<!-- Markdown link & img dfn's -->
+[ruby-image]: https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white
+[rails-image]: https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white
+
