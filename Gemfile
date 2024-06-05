@@ -50,6 +50,7 @@ gem "googleauth"
 gem "google-id-token"
 gem "mime-types-data"
 gem "webrick"
+gem "rack_session_access"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
