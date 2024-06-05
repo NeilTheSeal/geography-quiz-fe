@@ -76,6 +76,4 @@ Rails.application.configure do
 
   config.hotwire_livereload.disable_default_listeners = true
   config.hotwire_livereload.listen_paths << Rails.root.join("app")
-  config.hotwire_livereload.listen_options[:force_polling] = true
-  config.hotwire_livereload.reload_method = :turbo_stream
 end

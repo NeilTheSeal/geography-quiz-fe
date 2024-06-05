@@ -1,0 +1,52 @@
+<div id="user-dashboard">
+
+  <div class="dashboard-header">
+    <h1><%= @user.name %>'s Dashboard</h1>
+
+    <%= link_to "Take a Quiz", "/quiz", class: "take-quiz-button" %>
+
+    <%= link_to "Sign Out", "/signout", class: "sign-out" %>
+  </div>
+
+  <div class="previous-scores-container">
+    <h2>Previous Scores</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @previous_scores.each do |score| %>
+          <tr>
+            <td>No Date</td>
+            <td><%= score %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="high-scores-container">
+    <h2>High Scores</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @high_scores.each do |score| %>
+          <tr>
+            <td>No Date</td>
+            <td><%= score[:name] %></td>
+            <td><%= score[:number_correct] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

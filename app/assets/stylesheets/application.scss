@@ -4,8 +4,14 @@ body {
   padding: 0;
 }
 
-.header {
+#home-header {
   background-color: #f1f1f1;
   padding: 10px;
   text-align: center;
+}
+
+#background-image {
+  width: 100vw;
+  position: absolute;
+  z-index: -1;
 }
