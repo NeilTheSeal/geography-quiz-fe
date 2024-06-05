@@ -82,3 +82,7 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.default_cassette_options = { decode_compressed_response: true }
 end
+
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+end
