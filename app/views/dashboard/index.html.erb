@@ -11,7 +11,7 @@
   <div id="tables-container">
     <div class="scores-container">
       <div class="table-title">Your Previous Scores</div>
-      <table class="scores-table">
+      <table class="scores-table" id="previous-scores">
         <thead>
           <tr>
             <th>Date</th>
@@ -20,7 +20,7 @@
         </thead>
         <tbody>
           <% @previous_scores.each do |score| %>
-            <tr>
+            <tr class="entry">
               <td><%= Date.rfc3339(score[:created_at]).strftime("%d/%m/%y") %></td>
               <td><%= score[:number_correct] %> / 20</td>
             </tr>
@@ -31,7 +31,7 @@
 
     <div class="scores-container">
       <div class="table-title">High Scores</div>
-      <table class="scores-table">
+      <table class="scores-table" id="high-scores">
         <thead>
           <tr>
             <th>Date</th>
@@ -41,7 +41,7 @@
         </thead>
         <tbody>
           <% @high_scores.each do |score| %>
-            <tr>
+            <tr class="entry">
               <td><%= Date.rfc3339(score[:created_at]).strftime("%d/%m/%y") %></td>
               <td><%= score[:name] %></td>
               <td><%= score[:number_correct] %> / 20</td>
