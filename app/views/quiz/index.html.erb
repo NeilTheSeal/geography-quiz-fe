@@ -1,0 +1,75 @@
+<div id="quiz-container">
+  <% @questions.each_with_index do |question, i| %>
+    <div class="prompt-container" style="<%= i == 0 ? "" : "display: none;" %>">
+      <div class="question-container">
+
+        <div class="question-number">
+          Question <%= i + 1 %>:
+        </div>
+
+        <div class="question-text">
+          <%= question[:question] %>
+        </div>
+
+        <div class="form-container">
+          <form id="question-<%= i %>" answer="<%= question[:correct_answer] %>">
+            <% question[:options].each do |option| %>
+              <input type="radio" value="<%= option %>" name="option" />
+              <div class="question-label">
+                <%= option %>
+              </div>
+            <% end %>
+          </form>
+          <% if i < @questions.length - 1 %>
+            <input type="button" class="next-button" id="next-<%= i %>" value="next question">
+          <% else %>
+            <input type="button" class="next-button" id="see-results" value="see results">
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div id="results-container" style="display: none;">
+    <div id="results-text">
+
+    </div>
+    <%= form_with url: @be_url, method: :post do |form| %>
+      <%= form.hidden_field :number_correct, id: "number-correct-field" %>
+      <%= form.hidden_field :user_id, value: current_user.user_id %>
+      <%= form.submit "Submit" %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  let number_correct = 0;
+  let questions = document.getElementsByClassName("prompt-container");
+  let nextButtons = document.getElementsByClassName("next-button");
+  for (let i = 0; i < nextButtons.length; i++) {
+    nextButtons[i].addEventListener("click", function() {
+      const answer = document.getElementById(`question-${i}`).getAttribute("answer");
+      const guess = document.querySelector(`#question-${i} input[name="option"]:checked`).value;
+
+      if (!document.querySelector(`#question-${i} input[name="option"]:checked`)) {
+        alert("Please select an option");
+        return;
+      } else if (i < questions.length - 1) {
+        if (answer === guess) {
+          number_correct++;
+        }
+        questions[i].style.display = "none";
+        questions[i + 1].style.display = "grid";
+      } else {
+        if (answer === guess) {
+          number_correct++;
+        }
+        questions[i].style.display = "none";
+        document.getElementById("results-container").style.display = "grid";
+        document.getElementById("results-text").innerHTML = `You got ${number_correct} out of ${questions.length} questions correct`;
+        document.getElementById("number-correct-field").value = number_correct;
+      }
+      console.log(number_correct)
+    });
+  }
+</script>

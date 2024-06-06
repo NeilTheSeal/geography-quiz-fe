@@ -237,3 +237,49 @@ body {
     gap: 20px;
   }
 }
+
+#quiz-container {
+  display: grid;
+  justify-content: center;
+}
+
+.prompt-container {
+  display: grid;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  width: max-content;
+  justify-self: center;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 12px;
+  max-width: calc(min(400px, calc(100vw - 60px)));
+}
+
+.question-container {
+  display: grid;
+  gap: 5px;
+}
+
+.question-number {
+  text-align: center;
+}
+
+.question-text {
+  text-align: center;
+}
+
+.form-container {
+  margin-top: 5px;
+  display: grid;
+  justify-content: center;
+  gap: 15px;
+}
+
+.form-container>form {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 5px;
+  justify-content: center;
+}
