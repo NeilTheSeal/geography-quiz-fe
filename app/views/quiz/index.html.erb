@@ -63,6 +63,11 @@
 
   for (let i = 0; i < seeAnswerButtons.length; i++) {
     seeAnswerButtons[i].addEventListener("click", function() {
+      const guess = document.querySelector(`#question-${i} input[name="option"]:checked`);
+      if (!guess) {
+        alert("Please select an option");
+        return;
+      }
       seeAnswerButtons[i].style.display = "none";
       nextButtons[i].style.display = "block";
       const answer = document.getElementById(`question-${i}`).getAttribute("answer");
@@ -84,10 +89,7 @@
       const answer = document.getElementById(`question-${i}`).getAttribute("answer");
       const guess = document.querySelector(`#question-${i} input[name="option"]:checked`);
 
-      if (!guess) {
-        alert("Please select an option");
-        return;
-      } else if (i < questions.length - 1) {
+      if (i < questions.length - 1) {
         if (answer === guess.value) {
           number_correct++;
         }
