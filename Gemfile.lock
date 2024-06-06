@@ -474,6 +474,7 @@ DEPENDENCIES
   rubocop
   rubocop-discourse
   sass-rails
+  sassc
   shoulda-matchers
   simplecov
   solargraph

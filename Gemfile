@@ -49,6 +49,8 @@ gem "google-id-token"
 gem "mime-types-data"
 gem "rack_session_access"
 gem "webrick"
+gem "sassc"
+
 group :development, :test do
   gem "capybara"
   gem "factory_bot_rails"
