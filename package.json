@@ -6,11 +6,6 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.4",
-    "bun": "^1.1.10"
-  },
-  "engines": {
-    "node": "21.6.2",
-    "yarn": "1.22.22"
+    "@hotwired/turbo-rails": "^8.0.4"
   }
 }
