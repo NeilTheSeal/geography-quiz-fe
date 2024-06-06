@@ -2,7 +2,8 @@ class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    target_url = Google::Auth::WebUserAuthorizer.handle_auth_callback_deferred(request)
+    authorizer = Google::Auth::WebUserAuthorizer
+    target_url = authorizer.handle_auth_callback_deferred(request)
     redirect target_url
   end
 
