@@ -1,7 +1,6 @@
 class QuizController < ApplicationController
   def index
-    @questions = QuizService.new.retrieve_questions
-    @be_url = Rails.env.production? ? "https://ancient-plains-68209-663b50393b93.herokuapp.com/api/v0/high-scores" : "http://localhost:5000/api/v0/high-scores"
+    @facade = QuizFacade.new
   end
 
   def create

@@ -1,11 +1,11 @@
 class ScoresService
   def initialize(user_id)
     @user_id = user_id
-    if ENV["RAILS_ENV"] == "production"
-      @host = "https://ancient-plains-68209-663b50393b93.herokuapp.com"
-    else
-      @host = "http://localhost:5000"
-    end
+    @host = if ENV["RAILS_ENV"] == "production"
+              "https://ancient-plains-68209-663b50393b93.herokuapp.com"
+            else
+              "http://localhost:5000"
+            end
   end
 
   def previous_scores
@@ -26,13 +26,11 @@ class ScoresService
   end
 
   def self.high_scores
-    host = nil
-
-    if ENV["RAILS_ENV"] == "production"
-      host = "https://ancient-plains-68209-663b50393b93.herokuapp.com"
-    else
-      host = "http://localhost:5000"
-    end
+    host = if ENV["RAILS_ENV"] == "production"
+             "https://ancient-plains-68209-663b50393b93.herokuapp.com"
+           else
+             "http://localhost:5000"
+           end
 
     conn = Faraday.new(url: host) do |faraday|
       faraday.headers["Accept"] = "application/json"
