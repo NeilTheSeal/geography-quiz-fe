@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   post "/signin" => "sessions#new"
   get "/signout" => "sessions#destroy"
   get "/dashboard" => "dashboard#index"
+  get "/quiz" => "quiz#index"
+  post "/quiz" => "quiz#create"
 end
