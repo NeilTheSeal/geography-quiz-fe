@@ -19,33 +19,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(87, 87, 87);
-  background-image: url(/assets/earth_2.png);
-  background-position: top center;
-  background-size: 1400px;
-}
-
-@media screen and (max-width: 1200px) {
-  body {
-    background-size: 1200px;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  body {
-    background-size: 1000px;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  body {
-    background-size: 800px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  body {
-    background-size: 800px;
-  }
+  // background-image: url(/assets/earth_2.png);
+  // background-position: top center;
+  // background-size: 1400px;
 }
 
 #home-header {
@@ -63,11 +39,35 @@ body {
 }
 
 #background-image {
-  width: calc(min(100vw, 700px));
+  width: 1400px;
   position: absolute;
   left: 50vw;
   transform: translateX(-50%);
   z-index: -1;
+}
+
+@media screen and (max-width: 1200px) {
+  #background-image {
+    width: 1200px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #background-image {
+    width: 1000px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #background-image {
+    width: 800px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #background-image {
+    width: 800px;
+  }
 }
 
 #login-container {
