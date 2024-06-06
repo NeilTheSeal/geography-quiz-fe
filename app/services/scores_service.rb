@@ -18,7 +18,10 @@ class ScoresService
     json = JSON.parse(response.body, symbolize_names: true)
 
     json[:data].map do |score_data|
-      score_data[:attributes][:number_correct]
+      {
+        number_correct: score_data[:attributes][:number_correct],
+        created_at: score_data[:attributes][:created_at]
+      }
     end
   end
 
@@ -41,7 +44,8 @@ class ScoresService
     json[:data].map do |score_data|
       {
         number_correct: score_data[:attributes][:number_correct],
-        name: User.find_by(user_id: score_data[:attributes][:user_id]).name
+        name: User.find_by(user_id: score_data[:attributes][:user_id]).name,
+        created_at: score_data[:attributes][:created_at]
       }
     end
   end

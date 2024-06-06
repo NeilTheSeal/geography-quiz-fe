@@ -243,7 +243,8 @@ body {
   justify-content: center;
 }
 
-.prompt-container {
+.prompt-container,
+#results-container {
   display: grid;
   justify-content: center;
   gap: 20px;
@@ -282,4 +283,19 @@ body {
   grid-template-columns: max-content max-content;
   gap: 5px;
   justify-content: center;
+}
+
+.flag-img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+#results-container>form {
+  display: grid;
+  grid-template-columns: max-content;
+  justify-content: center;
+}
+
+#results-text {
+  text-align: center;
 }
