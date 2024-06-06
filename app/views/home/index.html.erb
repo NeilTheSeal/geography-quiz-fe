@@ -1,1 +1,31 @@
-<div id="home-header">Welcome to the World Geography Quiz!</div>
+<div id="home-header">
+  <div class="welcome">Welcome to the World Geography Quiz!</div>
+</div>
+
+<div id="login-container">
+  <div id="login-backdrop">
+    <div id="login-label">Log in with Google</div>
+    <div id="button-container">
+      <% unless current_user %>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <div id="g_id_onload"
+            data-client_id="<%= @client_id %>"
+            data-context="signin"
+            data-ux_mode="popup"
+            data-login_uri="http://localhost:3000/signin"
+            data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin"
+            data-type="standard"
+            data-shape="rectangular"
+            data-theme="filled_blue"
+            data-text="signin_with"
+            data-size="large"
+            data-width="250"
+            data-logo_alignment="left">
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

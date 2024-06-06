@@ -2,26 +2,7 @@
 <html>
   <head>
     <title>GeographyQuizFe</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <% unless current_user %>
-      <script src="https://accounts.google.com/gsi/client" async defer></script>
-      <div id="g_id_onload"
-          data-client_id="<%= @client_id %>"
-          data-context="signin"
-          data-ux_mode="popup"
-          data-login_uri="http://localhost:3000/signin"
-          data-auto_prompt="false">
-      </div>
-
-      <div class="g_id_signin"
-          data-type="standard"
-          data-shape="rectangular"
-          data-theme="outline"
-          data-text="signin_with"
-          data-size="large"
-          data-logo_alignment="left">
-      </div>
-    <% end %>    
+    <meta name="viewport" content="width=device-width,initial-scale=1"> 
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -32,7 +13,7 @@
   </head>
 
   <body>
-        <img id="background-image" src="<%= asset_path('earth.png') %>" />
+    <!-- <img id="background-image" src="<%= asset_path('earth_2.png') %>" /> -->
     <%= yield %>
   </body>
 </html>

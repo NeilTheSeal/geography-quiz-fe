@@ -1,52 +1,54 @@
 <div id="user-dashboard">
 
-  <div class="dashboard-header">
-    <h1><%= @user.name %>'s Dashboard</h1>
-
-    <%= link_to "Take a Quiz", "/quiz", class: "take-quiz-button" %>
-
-    <%= link_to "Sign Out", "/signout", class: "sign-out" %>
+  <div id="dashboard-header">
+    <div id="dashboard-name"><%= @user.name %>'s Dashboard</div>
+    <div id="dashboard-buttons">
+      <%= link_to "Take a Quiz", "/quiz", id: "take-quiz-button" %>
+      <%= link_to "Sign Out", "/signout", id: "sign-out-button" %>
+    </div>
   </div>
 
-  <div class="previous-scores-container">
-    <h2>Previous Scores</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @previous_scores.each do |score| %>
+  <div id="tables-container">
+    <div class="scores-container">
+      <div class="table-title">Your Previous Scores</div>
+      <table class="scores-table">
+        <thead>
           <tr>
-            <td>No Date</td>
-            <td><%= score %></td>
+            <th>Date</th>
+            <th>Score</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          <% @previous_scores.each do |score| %>
+            <tr>
+              <td>No Date</td>
+              <td><%= score %> / 20</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-  <div class="high-scores-container">
-    <h2>High Scores</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Name</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @high_scores.each do |score| %>
+    <div class="scores-container">
+      <div class="table-title">High Scores</div>
+      <table class="scores-table">
+        <thead>
           <tr>
-            <td>No Date</td>
-            <td><%= score[:name] %></td>
-            <td><%= score[:number_correct] %></td>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Score</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @high_scores.each do |score| %>
+            <tr>
+              <td>No Date</td>
+              <td><%= score[:name] %></td>
+              <td><%= score[:number_correct] %> / 20</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
