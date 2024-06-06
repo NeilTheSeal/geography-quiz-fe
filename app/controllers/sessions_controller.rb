@@ -7,24 +7,11 @@ class SessionsController < ApplicationController
   end
 
   def new
-    id = Google::Auth::ClientId.new(
-      Rails.application.credentials.google[:client_id],
-      Rails.application.credentials.google[:client_secret]
-    ).id
-    audience = id
-    claim = Google::Auth::IDTokens.verify_oidc(
-      params["credential"],
-      aud: audience,
-      azp: audience
-    )
+    audience = auth_client_id
+    claim = verify_oidc(audience)
+
     if claim
-      User.find_or_create_by(
-        user_id: claim["sub"],
-        name: claim["name"]
-      )
-      session[:user_name] = claim["name"]
-      session[:user_id] = claim["sub"]
-      session[:user_email] = claim["email"]
+      new_session(claim)
       redirect_to "/dashboard"
     else
       logger.info("No valid identity token present")
@@ -35,5 +22,32 @@ class SessionsController < ApplicationController
   def destroy
     session.clear
     redirect_to "/"
+  end
+
+  private
+
+  def auth_client_id
+    Google::Auth::ClientId.new(
+      Rails.application.credentials.google[:client_id],
+      Rails.application.credentials.google[:client_secret]
+    ).id
+  end
+
+  def verify_oidc(audience)
+    Google::Auth::IDTokens.verify_oidc(
+      params["credential"],
+      aud: audience,
+      azp: audience
+    )
+  end
+
+  def new_session(claim)
+    User.find_or_create_by(
+      user_id: claim["sub"],
+      name: claim["name"]
+    )
+    session[:user_name] = claim["name"]
+    session[:user_id] = claim["sub"]
+    session[:user_email] = claim["email"]
   end
 end
