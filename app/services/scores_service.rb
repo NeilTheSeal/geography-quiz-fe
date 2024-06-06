@@ -2,7 +2,7 @@ class ScoresService
   def initialize(user_id)
     @user_id = user_id
     if ENV["RAILS_ENV"] == "production"
-      @host = "https://secret-citadel-94988-86e2ffef1cda.herokuapp.com/signin"
+      @host = "https://ancient-plains-68209-663b50393b93.herokuapp.com"
     else
       @host = "http://localhost:5000"
     end
