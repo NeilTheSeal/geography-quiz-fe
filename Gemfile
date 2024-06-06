@@ -65,8 +65,6 @@ group :development, :test do
   gem "simplecov"
   gem "solargraph" # optional - for use with Solargraph VSCode plugin
   gem "standard" # optional - for use with Ruby Standard VSCode plugin
-  gem "vcr"
-  gem "webmock"
 end
 
 group :development do
