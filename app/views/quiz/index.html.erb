@@ -29,10 +29,12 @@
             <% end %>
           </form>
 
+          <input type="button" class="see-answer-button" id="see-answer-<%= i %>" value="see answer">
+
           <% if i < @questions.length - 1 %>
-            <input type="button" class="next-button" id="next-<%= i %>" value="next question">
+            <input type="button" class="next-button" id="next-<%= i %>" value="next question" style="display: none;">
           <% else %>
-            <input type="button" class="next-button" id="see-results" value="see results">
+            <input type="button" class="next-button" id="see-results" value="see results" style="display: none;">
           <% end %>
 
         </div>
@@ -42,10 +44,10 @@
   <% end %>
 
   <div id="results-container" style="display: none;">
-    <div id="results-text">
+    <div id="results-text" style="display: none;">
 
     </div>
-    <%= form_with url: @be_url, method: :post do |form| %>
+    <%= form_with url: @be_url, method: :post, class: "submit-form" do |form| %>
       <%= form.hidden_field :number_correct, id: "number-correct-field" %>
       <%= form.hidden_field :user_id, value: current_user.user_id %>
       <%= form.submit "Submit" %>
@@ -57,6 +59,26 @@
   let number_correct = 0;
   let questions = document.getElementsByClassName("prompt-container");
   let nextButtons = document.getElementsByClassName("next-button");
+  let seeAnswerButtons = document.getElementsByClassName("see-answer-button");
+
+  for (let i = 0; i < seeAnswerButtons.length; i++) {
+    seeAnswerButtons[i].addEventListener("click", function() {
+      seeAnswerButtons[i].style.display = "none";
+      nextButtons[i].style.display = "block";
+      const answer = document.getElementById(`question-${i}`).getAttribute("answer");
+      const form = document.getElementsByClassName("form-container")[i].children[0];
+      const inputs = form.getElementsByTagName("input");
+      const labels = form.getElementsByClassName("question-label");
+      for (let j = 0; j < inputs.length; j++) {
+        if (inputs[j].value === answer) {
+          inputs[j].classList.add("correct");
+          labels[j].classList.add("correct");
+        }
+        inputs[j].setAttribute("disabled", "true");
+      }
+    });
+  };
+
   for (let i = 0; i < nextButtons.length; i++) {
     nextButtons[i].addEventListener("click", function() {
       const answer = document.getElementById(`question-${i}`).getAttribute("answer");
@@ -78,6 +100,7 @@
         questions[i].style.display = "none";
         document.getElementById("results-container").style.display = "grid";
         document.getElementById("results-text").innerHTML = `You got ${number_correct} out of ${questions.length} questions correct!`;
+        document.getElementById("results-text").style.display = "block";
         document.getElementById("number-correct-field").value = number_correct;
       }
       console.log(number_correct)

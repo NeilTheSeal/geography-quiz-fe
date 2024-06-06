@@ -299,3 +299,16 @@ body {
 #results-text {
   text-align: center;
 }
+
+.correct {
+  background-color: lightgreen;
+  padding: 6px;
+}
+
+.correct>.flag-img {
+  margin-bottom: 0px;
+}
+
+.submit-form {
+  display: none;
+}
