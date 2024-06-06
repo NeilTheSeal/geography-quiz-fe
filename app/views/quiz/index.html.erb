@@ -1,6 +1,13 @@
+<div id="quiz-header">
+  <div id="quiz-buttons">
+    <%= link_to "Dashboard", "/dashboard", id: "dashboard-button" %>
+    <%= link_to "Sign Out", "/signout", id: "sign-out-button" %>
+  </div>
+</div>
+
 <div id="quiz-container">
 
-  <% @questions.each_with_index do |question, i| %>
+  <% @facade.questions.each_with_index do |question, i| %>
 
     <div class="prompt-container" style="<%= i == 0 ? "" : "display: none;" %>">
       <div class="question-container">
@@ -31,7 +38,7 @@
 
           <input type="button" class="see-answer-button" id="see-answer-<%= i %>" value="see answer">
 
-          <% if i < @questions.length - 1 %>
+          <% if i < @facade.questions.length - 1 %>
             <input type="button" class="next-button" id="next-<%= i %>" value="next question" style="display: none;">
           <% else %>
             <input type="button" class="next-button" id="see-results" value="see results" style="display: none;">
@@ -47,7 +54,7 @@
     <div id="results-text" style="display: none;">
 
     </div>
-    <%= form_with url: @be_url, method: :post, class: "submit-form" do |form| %>
+    <%= form_with url: @facade.submit_url, method: :post, class: "submit-form" do |form| %>
       <%= form.hidden_field :number_correct, id: "number-correct-field" %>
       <%= form.hidden_field :user_id, value: current_user.user_id %>
       <%= form.submit "Submit" %>
