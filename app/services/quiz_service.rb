@@ -1,10 +1,10 @@
 class QuizService
   def initialize
-    if ENV["RAILS_ENV"] == "production"
-      @host = "https://ancient-plains-68209-663b50393b93.herokuapp.com"
-    else
-      @host = "http://localhost:5000"
-    end
+    @host = if ENV["RAILS_ENV"] == "production"
+              "https://ancient-plains-68209-663b50393b93.herokuapp.com"
+            else
+              "http://localhost:5000"
+            end
   end
 
   def create_score(number_correct, user_id)
@@ -12,21 +12,16 @@ class QuizService
       faraday.headers["Accept"] = "application/json"
     end
 
-    response = conn.post("/api/v0/high-scores", { number_correct: number_correct, user_id: user_id })
-    json = JSON.parse(response.body, symbolize_names: true)
-
-    p json[:data]
+    conn.post(
+      "/api/v0/high-scores",
+      { number_correct:, user_id: }
+    )
 
     redirect_to dashboard_path
   end
 
   def retrieve_questions
-    conn = Faraday.new(url: @host) do |faraday|
-      faraday.headers["Accept"] = "application/json"
-    end
-
-    response = conn.get("/api/v0/quiz-questions")
-    json = JSON.parse(response.body, symbolize_names: true)
+    json = questions_as_json
 
     json[:data].map do |score_data|
       {
@@ -37,5 +32,16 @@ class QuizService
         image: score_data[:attributes][:image]
       }
     end
+  end
+
+  private
+
+  def questions_as_json
+    conn = Faraday.new(url: @host) do |faraday|
+      faraday.headers["Accept"] = "application/json"
+    end
+
+    response = conn.get("/api/v0/quiz-questions")
+    JSON.parse(response.body, symbolize_names: true)
   end
 end
