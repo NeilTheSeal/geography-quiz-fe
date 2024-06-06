@@ -12,7 +12,7 @@
             data-client_id="<%= @client_id %>"
             data-context="signin"
             data-ux_mode="popup"
-            data-login_uri="http://localhost:3000/signin"
+            data-login_uri="<%= ENV["RAILS_ENV"] == "production" ? "https://secret-citadel-94988-86e2ffef1cda.herokuapp.com/signin" : "http://localhost:3000/signin" %>"
             data-auto_prompt="false">
         </div>
 
