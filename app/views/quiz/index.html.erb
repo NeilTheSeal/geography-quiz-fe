@@ -1,3 +1,10 @@
+<div id="quiz-header">
+  <div id="quiz-buttons">
+    <%= link_to "Dashboard", "/dashboard", id: "dashboard-button" %>
+    <%= link_to "Sign Out", "/signout", id: "sign-out-button" %>
+  </div>
+</div>
+
 <div id="quiz-container">
 
   <% @facade.questions.each_with_index do |question, i| %>

@@ -98,7 +98,8 @@ body {
   justify-items: center;
 }
 
-#dashboard-header {
+#dashboard-header,
+#quiz-header {
   display: grid;
   justify-content: center;
   padding: 20px 10px;
@@ -113,7 +114,8 @@ body {
   text-align: center;
 }
 
-#dashboard-buttons {
+#dashboard-buttons,
+#quiz-buttons {
   display: grid;
   grid-template-columns: repeat(2, 150px);
   justify-content: center;
@@ -121,7 +123,8 @@ body {
 }
 
 #take-quiz-button,
-#sign-out-button {
+#sign-out-button,
+#dashboard-button {
   width: 100px;
   padding: 10px;
   border: 1px solid black;
@@ -132,11 +135,13 @@ body {
   color: black;
 }
 
-#take-quiz-button {
+#take-quiz-button,
+#dashboard-button {
   background-color: rgb(204, 247, 207);
 }
 
-#take-quiz-button:hover {
+#take-quiz-button:hover,
+#dashboard-button:hover {
   background-color: rgb(204, 247, 227);
 }
 
