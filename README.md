@@ -6,7 +6,7 @@
 
 This is the front end to the **Geography Quiz** web application made by students at [Turing School of Programming and Design](https://turing.edu) over the course of two weeks. It is [deployed on Heroku](https://secret-citadel-94988-86e2ffef1cda.herokuapp.com) and uses PostgreSQL to store user data, along with OAuth2 to create accounts. The quiz questions are randomly generated using data from the [REST Countries API](https://restcountries.com). Each quiz is 20 questions and there is a high scores list displaying the most knowledgable folks. The back end of this project is open source and [available on GitHub.](https://github.com/NeilTheSeal/geography-quiz-be)
 
-<img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png" alt="drawing" width="300" style="transform:translateX(calc(50vw - 100%));"/>
+<img src="https://secret-citadel-94988-86e2ffef1cda.herokuapp.com/quiz_screenshot.png" alt="drawing" width="400" style="transform:translateX(calc(50vw - 75%));"/>
 
 ## Example quiz questions
 
