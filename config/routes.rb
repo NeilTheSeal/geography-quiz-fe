@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   get "active",  to: "sessions#active"
   get "timeout", to: "sessions#timeout"
   get "/login" => "home#index"
+  get "/is-user-valid" => "users#user_valid"
 end
