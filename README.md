@@ -37,6 +37,9 @@ This is the front end to the **Geography Quiz** web application made by students
 - Can I retake the quiz?
   - You can take the quiz as many times as you want, and your dashboard will show your previous quiz scores and the dates you attempted those quizzes.
 
+- How do I create an account/log in?
+  - This application uses Google OAuth2 for logging in and creating an account. In order to create an account, you must have a Google account. Because we use OAuth2, you do not need to create a password for this application.
+
 ## Development setup
 
 The front-end of this project uses Ruby on Rails 7.1.3 and was built using macOS Sonoma 14.4.1. It uses the [hotwire-livereload gem](https://github.com/kirillplatonov/hotwire-livereload) to dynamically refresh the browser whenever changes are made to files within `/app/`.
