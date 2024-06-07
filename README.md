@@ -47,7 +47,7 @@ First, clone the repository to your computer
 git clone git@github.com:NeilTheSeal/geography-quiz-fe.git
 ```
 
-This guide assumes you have installed [homebrew](https://brew.sh), [Rails 7.1.3](https://guides.rubyonrails.org/v7.1/getting_started.html), and [node.js 21.6.2](https://github.com/nvm-sh/nvm). In the repository root directory, run
+This guide assumes you have installed [homebrew](https://brew.sh), [Rails 7.1.3](https://guides.rubyonrails.org/v7.1/getting_started.html), [node.js 21.6.2](https://github.com/nvm-sh/nvm), and [PostgreSQL >= 14](https://www.postgresql.org/download/). In the repository root directory, run
 
 ```sh
 npm install --save
@@ -82,13 +82,19 @@ Start the **redis** background task -
 brew services restart redis
 ```
 
+Create the necessary databases -
+
+```sh
+rails db:{create,migrate,seed}
+```
+
 Finally, start the development server
 
 ```sh
 ./bin/dev
 ```
 
-and open a web browser with URL `localhost:3000`.
+and open a web browser with URL `localhost:3000`. Keep in mind that the [back end of this application](https://github.com/NeilTheSeal/geography-quiz-be) must be running on `localhost:5000` for the front end to function correctly. For instructions on how to run the back-end server, see the [back end GitHub page](https://github.com/NeilTheSeal/geography-quiz-be).
 
 ## Release History
 
