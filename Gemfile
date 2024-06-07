@@ -50,6 +50,7 @@ gem "mime-types-data"
 gem "rack_session_access"
 gem "webrick"
 gem "sassc"
+gem "auto-session-timeout"
 
 group :development, :test do
   gem "capybara"

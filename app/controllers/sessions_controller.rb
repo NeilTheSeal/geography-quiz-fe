@@ -1,5 +1,14 @@
 class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  auto_session_timeout_actions
+
+  def active
+    render_session_status
+  end
+
+  def timeout
+    render_session_timeout
+  end
 
   def create
     authorizer = Google::Auth::WebUserAuthorizer

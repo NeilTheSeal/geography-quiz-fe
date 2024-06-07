@@ -13,6 +13,9 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <%= auto_session_timeout_js %>
+    <% end %>
     <img id="background-image" src="<%= asset_path('earth_2.png') %>" />
     <%= yield %>
   </body>
