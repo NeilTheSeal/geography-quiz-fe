@@ -1,6 +1,6 @@
 class QuizService
   def initialize
-    @host = if ENV["RAILS_ENV"] == "production"
+    @host = if Rails.env.production?
               "https://ancient-plains-68209-663b50393b93.herokuapp.com"
             else
               "http://localhost:5000"
