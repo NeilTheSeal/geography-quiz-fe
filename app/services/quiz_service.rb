@@ -8,9 +8,7 @@ class QuizService
   end
 
   def create_score(number_correct, user_id)
-    conn = Faraday.new(url: @host) do |faraday|
-      faraday.headers["Accept"] = "application/json"
-    end
+    conn = faraday_connection
 
     conn.post(
       "/api/v0/high-scores",
@@ -37,11 +35,15 @@ class QuizService
   private
 
   def questions_as_json
-    conn = Faraday.new(url: @host) do |faraday|
+    conn = faraday_connection
+    response = conn.get("/api/v0/quiz-questions")
+
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def faraday_connection
+    Faraday.new(url: @host) do |faraday|
       faraday.headers["Accept"] = "application/json"
     end
-
-    response = conn.get("/api/v0/quiz-questions")
-    JSON.parse(response.body, symbolize_names: true)
   end
 end
