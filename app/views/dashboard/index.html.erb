@@ -21,7 +21,7 @@
         <tbody>
           <% @facade.previous_scores.each do |score| %>
             <tr class="entry">
-              <td><%= Date.rfc3339(score[:created_at]).strftime("%d/%m/%y") %></td>
+              <td><%= Date.rfc3339(score[:created_at]).strftime("%m/%d/%y") %></td>
               <td><%= score[:number_correct] %> / 20</td>
             </tr>
           <% end %>
@@ -42,7 +42,7 @@
         <tbody>
           <% @facade.high_scores.each do |score| %>
             <tr class="entry">
-              <td><%= Date.rfc3339(score[:created_at]).strftime("%d/%m/%y") %></td>
+              <td><%= Date.rfc3339(score[:created_at]).strftime("%m/%d/%y") %></td>
               <td><%= score[:name] %></td>
               <td><%= score[:number_correct] %> / 20</td>
             </tr>
