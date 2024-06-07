@@ -49,6 +49,5 @@ class SessionsController < ApplicationController
     )
     session[:user_name] = claim["name"]
     session[:user_id] = claim["sub"]
-    session[:user_email] = claim["email"]
   end
 end
