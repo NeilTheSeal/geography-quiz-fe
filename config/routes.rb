@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get "/dashboard" => "dashboard#index"
   get "/quiz" => "quiz#index"
   post "/quiz" => "quiz#create"
+  get "active",  to: "sessions#active"
+  get "timeout", to: "sessions#timeout"
 end

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
+  auto_session_timeout 15.minutes
 
   def current_user
     return unless session[:user_id]

@@ -1,5 +1,6 @@
 class QuizController < ApplicationController
   def index
+    redirect_to "/" if !current_user
     @facade = QuizFacade.new
   end
 
