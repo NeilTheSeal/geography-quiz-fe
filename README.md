@@ -10,43 +10,32 @@ This is the front end to the **Geography Quiz** web application made by students
 
 ## Example quiz questions
 
-Which of these countries' capital is New Delhi?
-- Pakistan
-- India
-- Germany
-- Botswana
-<br/>
-<br/>
+- Is Yemen landlocked?
+  - true
+  - false <--
 
-What country has borders with Bandledesh, Bhutan, Myanmar, China, Nepal, and Pakistan?
-- India
-- Bhutan
-- Afghanistan
-- Mongolia
-<br/>
-<br/>
+- What country has the population of 7,275,556?
+  - Zimbabwe
+  - Dominica
+  - North Macedonia
+  - Laos <--
 
-The people of Poland commonly call their country:
-- Республика Польша
-- Polonia
-- Polska
-- Lengyelország
-<br/>
-<br/>
-
-This is the flag of what country? ![image](https://flagsapi.com/BE/flat/64.png)
-- Spain
-- Belgium
-- Bangladesh
-- Switzerland
+- What is the flag of the Dominican Republic?
+  - <img src="https://flagcdn.com/pt.svg" style="width: 60px; margin-bottom: 8px; transform:translateY(50%);">
+  - <img src="https://flagcdn.com/do.svg" style="width: 60px; margin-bottom: 8px; transform:translateY(50%);"> <--
+  - <img src="https://flagcdn.com/cu.svg" style="width: 60px; margin-bottom: 8px; transform:translateY(50%);">
+  - <img src="https://flagcdn.com/ht.svg" style="width: 60px; margin-bottom: 8px; transform:translateY(50%);">
 
 ## Q&A
 
-- Example question 1
-  - Example answer 1
+- Is there a database of possible questions?
+  - No, these questions are generated randomly from a large dataset of geographical information.
 
-- Example question 2
-  - Example answer 2
+- What personal information do you store if I create an account?
+  - We only store your name as it appears on your Google account. No emails or other personal information is saved.
+
+- Can I retake the quiz?
+  - You can take the quiz as many times as you want, and your dashboard will show your previous quiz scores and the dates you attempted those quizzes.
 
 ## Development setup
 
@@ -104,7 +93,7 @@ and open a web browser with URL `localhost:3000`.
 ## Release History
 
 * 0.0.1
-    * Work in progress
+    * Initial deployment 06/07/2024
 
 ## Meta
 
