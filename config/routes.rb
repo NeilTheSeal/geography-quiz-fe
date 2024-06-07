@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   post "/quiz" => "quiz#create"
   get "active",  to: "sessions#active"
   get "timeout", to: "sessions#timeout"
+  get "/login" => "home#index"
 end
