@@ -96,6 +96,12 @@ Finally, start the development server
 
 and open a web browser with URL `localhost:3000`. Keep in mind that the [back end of this application](https://github.com/NeilTheSeal/geography-quiz-be) must be running on `localhost:5000` for the front end to function correctly. For instructions on how to run the back-end server, see the [back end GitHub page](https://github.com/NeilTheSeal/geography-quiz-be).
 
+Run the test suite to diagnose issues. Keep in mind that the back end must be set up correctly and serving on `localhost:5000` for these tests to pass -
+
+```sh
+bundle exec rspec
+```
+
 ## Release History
 
 * 0.0.1
