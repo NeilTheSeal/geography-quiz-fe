@@ -17,31 +17,36 @@
       <%= auto_session_timeout_js %>
     <% end %>
     
-    <img id="background-image" src="<%= asset_path('earth_2.png') %>" />
-    
-    <div id="app">
+    <div id="overlay-horizontal">
+      <div id="overlay-vertical">
 
-      <%= yield %>
+        <img id="background-image" src="<%= asset_path('earth_2.png') %>" />
+        
+        <div id="app">
 
-      <div class="footer">
-        <div class="footer-text">
-          <div class="linkedin">
-            This application was created by 
-            <a href="https://www.linkedin.com/in/neilhendren/" target="_blank">
-              Neil Hendren
-            </a>,
-            <a href="https://www.linkedin.com/in/rodrigo-chavez-1b93a52b1/" target="_blank">
-              Rodrigo Chavez
-            </a>, and
-            <a href="https://www.linkedin.com/in/luis-aparicio14/" target="_blank">
-              Luis Aparicio
-            </a>
-            at 
-            <a href="https://turing.edu" target="_blank">
-              Turing School of Programming and Design
-            </a>.
+          <%= yield %>
+
+          <div class="footer">
+            <div class="footer-text">
+              <div class="linkedin">
+                This application was created by 
+                <a href="https://www.linkedin.com/in/neilhendren/" target="_blank">
+                  Neil Hendren
+                </a>,
+                <a href="https://www.linkedin.com/in/rodrigo-chavez-1b93a52b1/" target="_blank">
+                  Rodrigo Chavez
+                </a>, and
+                <a href="https://www.linkedin.com/in/luis-aparicio14/" target="_blank">
+                  Luis Aparicio
+                </a>
+                at 
+                <a href="https://turing.edu" target="_blank">
+                  Turing School of Programming and Design
+                </a>.
+              </div>
+              <a class="github" href="https://github.com/NeilTheSeal/geography-quiz-fe" target="_blank"><img id="github-icon" src="<%= asset_path('github-icon.svg') %>" /></a>
+            </div>
           </div>
-          <a class="github" href="https://github.com/NeilTheSeal/geography-quiz-fe" target="_blank"><img id="github-icon" src="<%= asset_path('github-icon.svg') %>" /></a>
         </div>
       </div>
     </div>
