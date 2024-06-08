@@ -1,31 +1,43 @@
-<div id="home-header">
-  <div class="welcome">Welcome to the World Geography Quiz!</div>
-</div>
+<div id="home">
+  <div id="home-header">
+    <div class="welcome">Welcome to the World Geography Quiz!</div>
+    <div class="header-text">
+      <div class="p1">
+        Test your knowledge of world geography with this fun quiz. 
+        You will be asked a series of multiple choice questions. 
+        Select the correct answer and click the "Next" button to 
+        move on to the next question. At the end of the quiz, 
+        you will be able to see your score and submit your results.
+      </div>
+      <div class="p2">Good luck!</div>
+    </div>
+  </div>
 
-<div id="login-container">
-  <div id="login-backdrop">
-    <div id="login-label">Log in with Google</div>
-    <div id="button-container">
-      <% unless current_user %>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-        <div id="g_id_onload"
-            data-client_id="<%= @client_id %>"
-            data-context="signin"
-            data-ux_mode="popup"
-            data-login_uri="<%= Rails.env.production? ? "https://secret-citadel-94988-86e2ffef1cda.herokuapp.com/signin" : "http://localhost:3000/signin" %>"
-            data-auto_prompt="false">
-        </div>
+  <div id="login-container">
+    <div id="login-backdrop">
+      <div id="login-label">Log in with Google</div>
+      <div id="button-container">
+        <% unless current_user %>
+          <script src="https://accounts.google.com/gsi/client" async defer></script>
+          <div id="g_id_onload"
+              data-client_id="<%= @client_id %>"
+              data-context="signin"
+              data-ux_mode="popup"
+              data-login_uri="<%= Rails.env.production? ? "https://secret-citadel-94988-86e2ffef1cda.herokuapp.com/signin" : "http://localhost:3000/signin" %>"
+              data-auto_prompt="false">
+          </div>
 
-        <div class="g_id_signin"
-            data-type="standard"
-            data-shape="rectangular"
-            data-theme="filled_blue"
-            data-text="signin_with"
-            data-size="large"
-            data-width="250"
-            data-logo_alignment="left">
-        </div>
-      <% end %>
+          <div class="g_id_signin"
+              data-type="standard"
+              data-shape="rectangular"
+              data-theme="filled_blue"
+              data-text="signin_with"
+              data-size="large"
+              data-width="250"
+              data-logo_alignment="left">
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

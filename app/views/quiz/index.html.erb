@@ -1,118 +1,120 @@
-<div id="quiz-header">
-  <div id="quiz-buttons">
-    <%= link_to "Dashboard", "/dashboard", id: "dashboard-button" %>
-    <%= link_to "Sign Out", "/signout", id: "sign-out-button" %>
+<div id="quiz">
+  <div id="quiz-header">
+    <div id="quiz-buttons">
+      <%= link_to "Dashboard", "/dashboard", id: "dashboard-button" %>
+      <%= link_to "Sign Out", "/signout", id: "sign-out-button" %>
+    </div>
   </div>
-</div>
 
-<div id="quiz-container">
+  <div id="quiz-container">
 
-  <% @facade.questions.each_with_index do |question, i| %>
+    <% @facade.questions.each_with_index do |question, i| %>
 
-    <div class="prompt-container" style="<%= i == 0 ? "" : "display: none;" %>">
-      <div class="question-container">
+      <div class="prompt-container" style="<%= i == 0 ? "" : "display: none;" %>">
+        <div class="question-container">
 
-        <div class="question-number">
-          Question <%= i + 1 %>:
-        </div>
+          <div class="question-number">
+            Question <%= i + 1 %>:
+          </div>
 
-        <div class="question-text">
-          <%= question[:question] %>
-        </div>
+          <div class="question-text">
+            <%= question[:question] %>
+          </div>
 
-        <div class="form-container">
-          <form id="question-<%= i %>" answer="<%= question[:correct_answer] %>">
-            <% question[:options].each do |option| %>
-              
-              <input type="radio" value="<%= option %>" name="option" />
-              <div class="question-label">
-                <% if question[:image] %>
-                  <img src="<%= option %>" class="flag-img" />
-                <% else %>
-                  <%= option %>
-                <% end %>
-              </div>
+          <div class="form-container">
+            <form id="question-<%= i %>" answer="<%= question[:correct_answer] %>">
+              <% question[:options].each do |option| %>
+                
+                <input type="radio" value="<%= option %>" name="option" />
+                <div class="question-label">
+                  <% if question[:image] %>
+                    <img src="<%= option %>" class="flag-img" />
+                  <% else %>
+                    <%= option %>
+                  <% end %>
+                </div>
 
+              <% end %>
+            </form>
+
+            <input type="button" class="see-answer-button" id="see-answer-<%= i %>" value="see answer">
+
+            <% if i < @facade.questions.length - 1 %>
+              <input type="button" class="next-button" id="next-<%= i %>" value="next question" style="display: none;">
+            <% else %>
+              <input type="button" class="next-button" id="see-results" value="see results" style="display: none;">
             <% end %>
-          </form>
 
-          <input type="button" class="see-answer-button" id="see-answer-<%= i %>" value="see answer">
-
-          <% if i < @facade.questions.length - 1 %>
-            <input type="button" class="next-button" id="next-<%= i %>" value="next question" style="display: none;">
-          <% else %>
-            <input type="button" class="next-button" id="see-results" value="see results" style="display: none;">
-          <% end %>
-
+          </div>
         </div>
       </div>
-    </div>
 
-  <% end %>
-
-  <div id="results-container" style="display: none;">
-    <div id="results-text" style="display: none;">
-
-    </div>
-    <%= form_with url: @facade.submit_url, method: :post, class: "submit-form" do |form| %>
-      <%= form.hidden_field :number_correct, id: "number-correct-field" %>
-      <%= form.hidden_field :user_id, value: current_user.user_id %>
-      <%= form.submit "Submit" %>
     <% end %>
+
+    <div id="results-container" style="display: none;">
+      <div id="results-text" style="display: none;">
+
+      </div>
+      <%= form_with url: @facade.submit_url, method: :post, class: "submit-form" do |form| %>
+        <%= form.hidden_field :number_correct, id: "number-correct-field" %>
+        <%= form.hidden_field :user_id, value: current_user.user_id %>
+        <%= form.submit "Submit" %>
+      <% end %>
+    </div>
   </div>
+
+  <script>
+    let number_correct = 0;
+    let questions = document.getElementsByClassName("prompt-container");
+    let nextButtons = document.getElementsByClassName("next-button");
+    let seeAnswerButtons = document.getElementsByClassName("see-answer-button");
+
+    for (let i = 0; i < seeAnswerButtons.length; i++) {
+      seeAnswerButtons[i].addEventListener("click", function() {
+        const guess = document.querySelector(`#question-${i} input[name="option"]:checked`);
+        if (!guess) {
+          alert("Please select an option");
+          return;
+        }
+        seeAnswerButtons[i].style.display = "none";
+        nextButtons[i].style.display = "block";
+        const answer = document.getElementById(`question-${i}`).getAttribute("answer");
+        const form = document.getElementsByClassName("form-container")[i].children[0];
+        const inputs = form.getElementsByTagName("input");
+        const labels = form.getElementsByClassName("question-label");
+        for (let j = 0; j < inputs.length; j++) {
+          if (inputs[j].value === answer) {
+            inputs[j].classList.add("correct");
+            labels[j].classList.add("correct");
+          }
+          inputs[j].setAttribute("disabled", "true");
+        }
+      });
+    };
+
+    for (let i = 0; i < nextButtons.length; i++) {
+      nextButtons[i].addEventListener("click", function() {
+        const answer = document.getElementById(`question-${i}`).getAttribute("answer");
+        const guess = document.querySelector(`#question-${i} input[name="option"]:checked`);
+
+        if (i < questions.length - 1) {
+          if (answer === guess.value) {
+            number_correct++;
+          }
+          questions[i].style.display = "none";
+          questions[i + 1].style.display = "grid";
+        } else {
+          if (answer === guess.value) {
+            number_correct++;
+          }
+          questions[i].style.display = "none";
+          document.getElementById("results-container").style.display = "grid";
+          document.getElementById("results-text").innerHTML = `You got ${number_correct} out of ${questions.length} questions correct!`;
+          document.getElementById("results-text").style.display = "block";
+          document.getElementById("number-correct-field").value = number_correct;
+        }
+        console.log(number_correct)
+      });
+    }
+  </script>
 </div>
-
-<script>
-  let number_correct = 0;
-  let questions = document.getElementsByClassName("prompt-container");
-  let nextButtons = document.getElementsByClassName("next-button");
-  let seeAnswerButtons = document.getElementsByClassName("see-answer-button");
-
-  for (let i = 0; i < seeAnswerButtons.length; i++) {
-    seeAnswerButtons[i].addEventListener("click", function() {
-      const guess = document.querySelector(`#question-${i} input[name="option"]:checked`);
-      if (!guess) {
-        alert("Please select an option");
-        return;
-      }
-      seeAnswerButtons[i].style.display = "none";
-      nextButtons[i].style.display = "block";
-      const answer = document.getElementById(`question-${i}`).getAttribute("answer");
-      const form = document.getElementsByClassName("form-container")[i].children[0];
-      const inputs = form.getElementsByTagName("input");
-      const labels = form.getElementsByClassName("question-label");
-      for (let j = 0; j < inputs.length; j++) {
-        if (inputs[j].value === answer) {
-          inputs[j].classList.add("correct");
-          labels[j].classList.add("correct");
-        }
-        inputs[j].setAttribute("disabled", "true");
-      }
-    });
-  };
-
-  for (let i = 0; i < nextButtons.length; i++) {
-    nextButtons[i].addEventListener("click", function() {
-      const answer = document.getElementById(`question-${i}`).getAttribute("answer");
-      const guess = document.querySelector(`#question-${i} input[name="option"]:checked`);
-
-      if (i < questions.length - 1) {
-        if (answer === guess.value) {
-          number_correct++;
-        }
-        questions[i].style.display = "none";
-        questions[i + 1].style.display = "grid";
-      } else {
-        if (answer === guess.value) {
-          number_correct++;
-        }
-        questions[i].style.display = "none";
-        document.getElementById("results-container").style.display = "grid";
-        document.getElementById("results-text").innerHTML = `You got ${number_correct} out of ${questions.length} questions correct!`;
-        document.getElementById("results-text").style.display = "block";
-        document.getElementById("number-correct-field").value = number_correct;
-      }
-      console.log(number_correct)
-    });
-  }
-</script>

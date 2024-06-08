@@ -14,6 +14,13 @@
  *= require_self
  */
 
+html,
+body {
+  margin: 0;
+  width: 100vw;
+  overflow: hidden;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
@@ -24,17 +31,47 @@ body {
   // background-size: 1400px;
 }
 
+#app {
+  display: grid;
+  grid-template-rows: 1fr max-content;
+  height: 100vh;
+  position: relative;
+  justify-items: start;
+}
+
 #home-header {
   padding: 15px;
   text-align: center;
   font-size: 24px;
   background-color: rgba(255, 255, 255, 0.9);
   border-bottom: 1px solid black;
+  width: calc(100vw - 30px);
+}
+
+.header-text {
+  font-size: 16px;
+  text-align: justify;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 0px 12px;
+  color: navy;
+  .p2 {
+    text-align: center;
+    margin-top: 8px;
+    color: black;
+  }
 }
 
 @media screen and (max-width: 700px) {
   #home-header {
     font-size: 20px;
+  }
+  .footer-text {
+    font-size: 11px;
+  }
+  .header-text {
+    font-size: 14px;
   }
 }
 
@@ -44,6 +81,7 @@ body {
   left: 50vw;
   transform: translateX(-50%);
   z-index: -1;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1200px) {
@@ -67,6 +105,29 @@ body {
 @media screen and (max-width: 600px) {
   #background-image {
     width: 800px;
+  }
+}
+
+.footer {
+  align-self: end;
+  padding: 12px 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid black;
+  font-size: 13px;
+  width: calc(100vw - 40px);
+  .footer-text {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    gap: 16px;
+    max-width: 800px;
+    margin: auto;
+    align-items: center;
+  }
+}
+
+.github {
+  img {
+    width: 30px;
   }
 }
 
@@ -96,17 +157,21 @@ body {
   display: grid;
   justify-content: center;
   justify-items: center;
+  grid-template-rows: max-content;
+  overflow: scroll;
 }
 
 #dashboard-header,
 #quiz-header {
   display: grid;
   justify-content: center;
+  justify-self: start;
   padding: 20px 10px;
   gap: 20px;
   width: calc(100vw - 20px);
   background-color: rgba(255, 255, 255, 0.9);
   border-bottom: 1px solid black;
+  height: max-content;
 }
 
 #dashboard-name {
@@ -159,6 +224,7 @@ body {
   grid-template-columns: repeat(2, max-content);
   gap: 60px;
   margin-top: 30px;
+  height: max-content;
 }
 
 .scores-container {
@@ -230,7 +296,8 @@ body {
     padding: 15px 20px;
   }
   #take-quiz-button,
-  #sign-out-button {
+  #sign-out-button,
+  #dashboard-button {
     width: 80px;
     padding: 8px;
     font-size: 12px;
@@ -243,9 +310,15 @@ body {
   }
 }
 
+#quiz {
+  overflow: scroll;
+  padding-bottom: 20px;
+}
+
 #quiz-container {
   display: grid;
   justify-content: center;
+  justify-self: center;
 }
 
 .prompt-container,
