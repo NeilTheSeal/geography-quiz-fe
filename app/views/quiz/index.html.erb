@@ -22,7 +22,7 @@
           </div>
 
           <div class="form-container">
-            <form id="question-<%= i %>" answer="<%= question[:correct_answer] %>">
+            <form id="question-<%= i %>">
               <% question[:options].each do |option| %>
                 
                 <input type="radio" value="<%= option %>" name="option" />
@@ -63,7 +63,22 @@
     </div>
   </div>
 
+  <div id="answers" style="display: none;">
+    <% @facade.questions.each_with_index do | question, i | %>
+      <div id="answer-<%= i %>" answer="<%= question[:correct_answer] %>"></div>
+    <% end %>
+  </div>
+
   <script>
+    // Please do not use this script to cheat on the quiz!
+    const answers = document.getElementById("answers");
+    for (let i = 0; i < answers.children.length; i++) {
+      const answerText = answers.children[i].getAttribute("answer");
+      const answerKey = answers.children[i].id;
+      sessionStorage.setItem(answerKey, answerText);
+    }
+    answers.remove();
+
     let number_correct = 0;
     let questions = document.getElementsByClassName("prompt-container");
     let nextButtons = document.getElementsByClassName("next-button");
@@ -78,7 +93,7 @@
         }
         seeAnswerButtons[i].style.display = "none";
         nextButtons[i].style.display = "block";
-        const answer = document.getElementById(`question-${i}`).getAttribute("answer");
+        const answer = sessionStorage.getItem(`answer-${i}`);
         const form = document.getElementsByClassName("form-container")[i].children[0];
         const inputs = form.getElementsByTagName("input");
         const labels = form.getElementsByClassName("question-label");
@@ -94,7 +109,7 @@
 
     for (let i = 0; i < nextButtons.length; i++) {
       nextButtons[i].addEventListener("click", function() {
-        const answer = document.getElementById(`question-${i}`).getAttribute("answer");
+        const answer = sessionStorage.getItem(`answer-${i}`);
         const guess = document.querySelector(`#question-${i} input[name="option"]:checked`);
 
         if (i < questions.length - 1) {
@@ -113,7 +128,6 @@
           document.getElementById("results-text").style.display = "block";
           document.getElementById("number-correct-field").value = number_correct;
         }
-        console.log(number_correct)
       });
     }
   </script>
